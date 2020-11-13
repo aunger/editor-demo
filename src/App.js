@@ -42,7 +42,7 @@ function App() {
           USFM Editor
         </p>
       </header>
-      <BasicUsfmEditor usfmString={usfm} className="editor" />
+      <BasicUsfmEditor usfmString={usfm} />
     </div>
   );
 }
