@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { createBasicUsfmEditor } from "usfm-editor/dist/components/BasicUsfmEditor"
+import { BasicUsfmEditor } from "usfm-editor"
 
 const usfm = String.raw`
 \id MRK Unlocked Literal Bible
@@ -31,8 +31,6 @@ const usfm = String.raw`
 \v 5 The whole country of Judea and all the people of Jerusalem went out to him. They were baptized by him in the Jordan River, confessing their sins.
 \v 6 John wore a coat of camel's hair and a leather belt around his waist, and he ate locusts and wild honey.
 `.trimLeft()
-
-const BasicUsfmEditor = createBasicUsfmEditor()
 
 function App() {
   return (
