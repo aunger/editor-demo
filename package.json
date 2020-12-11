@@ -5,8 +5,8 @@
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-scripts": "3.4.3",
-    "usfm-editor": "0.7.0-SNAPSHOT.5"
+    "react-scripts": "^4.0.1",
+    "usfm-editor": "0.8.0-SNAPSHOT.2"
   },
   "scripts": {
     "start": "react-scripts start",
