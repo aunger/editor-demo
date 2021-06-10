@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { createBasicUsfmEditor, withChapterPaging, withChapterSelection, withToolbar } from "usfm-editor"
 import './App.css';
 import { DemoToolbarSpecs } from './DemoToolbarSpecs'
@@ -12,10 +12,14 @@ const loading = String.raw`
 `.trimLeft()
 
 function App() {
-  const CustomEditor = withToolbar(withChapterSelection(withChapterPaging(createBasicUsfmEditor())))
-
   const [sourceString, setSourceString] = useState(loading);
   const [output, setOutput] = useState()
+
+  const CustomEditor = useMemo(
+    () => withToolbar(withChapterSelection(withChapterPaging(createBasicUsfmEditor()))),
+    [sourceString]
+  )
+
   useEffect(() => {
     window.fetch("https://git.door43.org/unfoldingWord/en_ult/raw/tag/25/27-DAN.usfm")
           .then(r=> r.text())
