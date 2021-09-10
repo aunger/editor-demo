@@ -1,5 +1,3 @@
-import { UsfmMarkers } from "usfm-editor"
-
 export const DemoToolbarSpecs = {
     "Section Header": {
         icon: "\\s",
