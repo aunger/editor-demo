@@ -11,15 +11,15 @@ const loading = String.raw`
 \v 1 Loading, please wait...
 `.trimLeft()
 
-function App() {
-  const CustomEditor = withToolbar(withChapterSelection(withChapterPaging(createBasicUsfmEditor())))
+const CustomEditor = withToolbar(withChapterSelection(withChapterPaging(createBasicUsfmEditor())))
 
+function App() {
   const [sourceString, setSourceString] = useState(loading);
   useEffect(() => {
     window.fetch("https://git.door43.org/unfoldingWord/en_ult/raw/tag/25/27-DAN.usfm")
           .then(r=> r.text())
           .then(text => { setSourceString(text) })
-  })
+  }, [])
   
   return (
     <div className="App">
