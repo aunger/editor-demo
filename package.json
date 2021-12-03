@@ -1,13 +1,13 @@
 {
   "name": "editor-demo",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "homepage": "https://aunger.github.io/editor-demo",
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "4.0.3",
-    "usfm-editor": "0.8.0"
+    "usfm-editor": "0.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
