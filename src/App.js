@@ -1,37 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { createBasicUsfmEditor, withChapterPaging, withChapterSelection, withToolbar } from "usfm-editor"
+import { usfmToSlate } from "usfm-editor/dist/transforms/usfmToSlate"
 import './App.css';
-import { DemoToolbarSpecs } from './DemoToolbarSpecs'
 
-const loading = String.raw`
-\id XXA LOADING
-\ide UTF-8
-\c 1
-\p
-\v 1 Loading, please wait...
-`.trimLeft()
-
-const CustomEditor = withToolbar(withChapterSelection(withChapterPaging(createBasicUsfmEditor())))
+const InitialUrl = "https://git.door43.org/WycliffeAssociates/en_ulb/raw/branch/master/57-TIT.usfm"
 
 function App() {
-  const [sourceString, setSourceString] = useState(loading);
+  const [usfmUrl, setUsfmUrl] = useState(InitialUrl);
+  const [slateString, setSlateString] = useState("");
   useEffect(() => {
-    window.fetch("https://git.door43.org/unfoldingWord/en_ult/raw/tag/25/27-DAN.usfm")
-          .then(r=> r.text())
-          .then(text => { setSourceString(text) })
-  }, [])
+    window.fetch(usfmUrl)
+          .then(r=> {
+            if (r.ok) return r.text()
+            else throw r.statusText
+          })
+          .then(usfmToSlate)
+          .then(slate => JSON.stringify(slate, null, 2))
+          .catch(reason => "Error: " + JSON.stringify(reason, null, 2) + reason)
+          .then(setSlateString)
+  }, [usfmUrl])
   
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          USFM Editor
-        </p>
+        <p>USFM to Slate</p>
       </header>
-      <CustomEditor
-        usfmString={sourceString}
-        toolbarSpecs={DemoToolbarSpecs}
-        />
+      <input type="text" value={usfmUrl} onChange={e => setUsfmUrl(e.target.value)} />
+      <pre>{slateString}</pre>
     </div>
   );
 }

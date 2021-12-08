@@ -18,3 +18,9 @@
   background-color: #70421413;
   font-size: calc(10px + 1vmin);
 }
+
+pre {
+  text-align: left;
+  align-items: left;
+  justify-content: left;
+}
